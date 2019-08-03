@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Calendar</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+ 
+<body>
+ 
+    <header>
+        <h1>Personal calendar</h1>
+
+        <form action="" class="search__container">
+            <img id="search-img" class="menu__search" src="img/icon/search.png" alt="menu">
+            <label class="sr-only" for="search">are you searching some event?</label>
+            <input aria-label="close" class="minified" type="text" name="search" id="search-bar">	
+        </form>
+    </header>
+
+    <div class="wapper">
+        <table id="calendar" class="wrapper__calendar">
+            <caption></caption>
+            <thead>
+                <tr>
+                    <th>Lun</th><th>Mar</th><th>Mie</th><th>Jue</th><th>Vie</th><th>Sab</th><th>Dom</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <section class="activities">
+            <h2>Activities</h2>
+            <div class="event"> </div>
+            
+            <div id="container">
+        
+            </div>
+            
+            <div id="container__btn">
+                <button class="add__new">Add new</button>
+            </div>
+    
+        </section>
+        
+    </div>
+    <script src="js/script.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/search-bar.js"></script>
+</body>
+</body>
+</html>

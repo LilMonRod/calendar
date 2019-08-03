@@ -1,0 +1,25 @@
+#   cache de sass    #
+######################
+.sass-cache
+.style.css.map
+style.css.map
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+#  cache de vscode   #
+######################
+.vscode
+
+
+#  node modules   #
+######################
+node_modules
