@@ -1,6 +1,11 @@
+const {
+	getInitialData,
+    validate
+} = require('./getEvents.js');
+
 var actual=new Date();
 function mostrarCalendario(year,month) {
-
+	
 	var now=new Date(year,month-1,1);
 	var last=new Date(year,month,0);
 	var primerDiaSemana=(now.getDay()==0)?7:now.getDay();
@@ -9,7 +14,7 @@ function mostrarCalendario(year,month) {
 	var resultado='<tr bgcolor="silver">';
 	var diaActual=0;
 	console.log(ultimoDiaMes);
- 
+ 	
 	var last_cell=primerDiaSemana+ultimoDiaMes;
  
 	// hacemos un bucle hasta 42, que es el máximo de valores que puede
@@ -28,9 +33,9 @@ function mostrarCalendario(year,month) {
 		}else{
 			// mostramos el dia
 			if(dia==actual.getDate() && month==actual.getMonth()+1 && year==actual.getFullYear())
-				resultado+='<td data-day="'+ dia +'-' + month +'-' + year +'" class="hoy">'+'<span>'+ dia +'</span>'+'</td>';
+				resultado+='<td data-day="'+ dia +'/' + month +'/' + year +'" class="hoy">'+'<span>'+ dia +'</span>'+'</td>';
 			else
-				resultado+='<td>'+'<span>'+ dia +'</span>'+'</td>';
+				resultado+='<td data-day="'+ dia +'/' + month +'/' + year +'">'+'<span>'+ dia +'</span>'+'</td>';
 			dia++;
 		}
 		if(i%7==0)
@@ -79,7 +84,9 @@ function mostrarCalendario(year,month) {
         caption.appendChild(contdata);
         caption.appendChild(contnext);
     }
-    addCaptionContent(caption[0]);
+	addCaptionContent(caption[0]);
+	getInitialData(now);
+	validate(now)
 }
  
 mostrarCalendario(actual.getFullYear(),actual.getMonth()+1);
