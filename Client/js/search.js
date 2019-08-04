@@ -10,20 +10,21 @@
 
     function search(event) {
         event.preventDefault();
-        console.log(event.target.value);
+
         data = manageValue(event.target.value);
         
         performanceData(data, event.target.value)
     
     }         
     function performanceData(data, searched) {
-        console.log(data);
-        cambiarTitulo(true);
+        resetContainer(true);
         if (data.success) {
             data = data.data;
             container.classList.add('events-list');
+            container.innerHTML = '';
+
             data.forEach(function() {
-            const cont = document.createElement('div');
+                const cont = document.createElement('div');
                 cont.classList.add('events-item');
 
                 const title = document.createElement('h3');
@@ -57,12 +58,9 @@
         
     }
     function manageValue(value) {
-        // localhost:2316/api/v1/months
-        // localhost:2316/api/v1/events?search=text
-        const url = 'localhost:2316/api/v1/events?search=' + value; 
+        const url = 'localhost:5000/api/v1/events?search=' + value; 
         fetch(url)
             .then(function(response) {
-                console.log(response);
                 return response.json();
             })
             .catch(function(error) {
@@ -70,20 +68,23 @@
             });
     }
 
-    function cambiarTitulo(validator) {
+    function resetContainer(validator) {
         if (validator) {
             title.innerHTML = '';
             title.innerHTML = 'Search results:';
             
             containerBTN.innerHTML = '';
+            container.innerHTML = '';
             containerBTN.appendChild(buttonClose);
         } else {
             title.innerHTML = '';
             title.innerHTML = 'Day activities';
             
+            container.innerHTML = '';
             containerBTN.innerHTML = '';
         }
     }
+
     searchBar.onkeypress = function(event) {
         if (event.key == 'Enter') {
             search(event);
@@ -91,6 +92,6 @@
     };
 
     buttonClose.addEventListener('click', function(){
-        cambiarTitulo(false);
+        resetContainer(false);
     })
 })();
