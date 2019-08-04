@@ -1,11 +1,4 @@
 
-const methods = {
-    POST: require('./methods/post'),
-    PUT: require('./methods/put'),
-    GET: require('./methods/get'),
-    DELETE: require('./methods/delete')
-};
-
 const {
     db,
     collection,
@@ -18,10 +11,17 @@ const {
     successful
 } = require('./commons');
 
+const methods = {
+    POST: require('./methods/post'),
+    PUT: require('./methods/put'),
+    GET: require('./methods/get'),
+    DELETE: require('./methods/delete')
+};
+
+
 
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
-const ObjectId = mongodb.ObjectId;
 const http = require('http');
 
 http.createServer((req, res) => {
@@ -35,10 +35,10 @@ http.createServer((req, res) => {
             if (methods[req.method]) {
                 methods[req.method](req, res, targetCollection);
             } else if (methods[req.method] === 'OPTIONS') {
-                successful(res, 'cool');
+                successful(res, 'good');
             } else {
-                error(res, 'Not such method');
+                error(res, 'wrong method');
             }
         })
-        .catch(err => error(res, 'Unable to connect'));
+        .catch(err => error(res, 'Connection failed'));
 }).listen(port);

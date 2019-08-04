@@ -1,3 +1,13 @@
+const days = [
+    'sunday',
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday'
+];
+
 const months = [
     'january', 
     'february',
@@ -11,16 +21,6 @@ const months = [
     'october',
     'november',
     'december'
-];
-
-const days = [
-    'sunday',
-    'monday',
-    'tuesday',
-    'wednesday',
-    'thursday',
-    'friday',
-    'saturday'
 ];
 
 function error(res, err) {
@@ -39,19 +39,19 @@ function successful(res, data) {
     }));
 }
 
-function path(str) {
-    const url = require('url');
-    return url.parse(str).pathname.split('/');
+function setId(id) {
+    const ObjectId = require('mongodb').ObjectId;
+    return new ObjectId(id);
+}
+
+function isInside(string, bigString) {
+    return new RegExp(`^${string}`).test(bigString);
 }
 
 function queryURL(str) {
     const url = require('url');
     const qs = require('querystring');
     return qs.parse(url.parse(str).query);
-}
-
-function isInside(string, bigString) {
-    return new RegExp(`^${string}`).test(bigString);
 }
 
 function isValidDate(date) {
@@ -63,10 +63,11 @@ function isValidDate(date) {
     }
 }
 
-function setId(id) {
-    const ObjectId = require('mongodb').ObjectId;
-    return new ObjectId(id);
+function path(str) {
+    const url = require('url');
+    return url.parse(str).pathname.split('/');
 }
+
 
 module.exports = {
     setId,
